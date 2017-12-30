@@ -1,15 +1,7 @@
-﻿using Core.Handlers;
-using System;
-
-namespace Core
+﻿namespace Core
 {
-    public class main
+    public class Main
     {
-        public static string BittrexApiEndPoint = @"https://bittrex.com/api/v1.1/public/getticker";     
-
-       
-        
-       
-
+        public static string BittrexApiEndPoint = @"https://bittrex.com/api/v1.1/public/getticker";         
     }
 }

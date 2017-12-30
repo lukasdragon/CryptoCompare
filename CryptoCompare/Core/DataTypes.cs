@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Core
+﻿namespace Core
 {
     class DataTypes
     {
@@ -18,7 +14,6 @@ namespace Core
                 Last = last;
             }
         }
-
 
         public struct BittrexMarket
         {

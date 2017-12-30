@@ -1,4 +1,5 @@
-﻿using Core.Handlers;
+﻿using Core.Exchanges;
+
 using System;
 
 namespace TestOutput
@@ -8,11 +9,17 @@ namespace TestOutput
 
         static void Main(string[] args)
         {
-            Bittrex bittrex = new Bittrex();
-            Console.WriteLine(bittrex.TestBittrexFormat());
-           //  Console.WriteLine(bittrex.GetTickerJson("USDT-BTC"));
-           // Console.WriteLine(bittrex.GetUSDBTC());
-            Console.ReadKey();
+            
+
+            while (true)
+            {
+                Bittrex bittrex = new Bittrex();
+                Console.WriteLine("ASK: $" + bittrex.GetUSDAsk("BTC"));
+                Console.WriteLine("BID: $" + bittrex.GetUSDBid("BTC"));
+                Console.WriteLine("LAST: $" + bittrex.GetUSDLast("BTC"));
+                Console.ReadKey();
+                Console.Clear();
+            }
         }
     }
 }
