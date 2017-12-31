@@ -43,7 +43,7 @@ namespace GUIOutput
                 float addedValue = BTCValue + 750;
                 BTCChart.ChartAreas[0].AxisX.Maximum = addedValue;
                 BTCChart.ChartAreas[0].AxisX.Minimum = 0;
-                BTCChart.ChartAreas[0].AxisX.Title = "Minutes";
+                BTCChart.ChartAreas[0].AxisX.Title = "Minutes after 0";
                 BTCChart.ChartAreas[0].AxisX.Interval = (60 * 24);
                 BTCChart.Series[0].Points.AddY(BTCValue);
 
