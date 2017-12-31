@@ -21,34 +21,46 @@ namespace Core.Exchanges
 
         public float GetUSDLast(string CryptoCurrency)
         {
-            BittrexMarket market = GetTicker("USDT-" + CryptoCurrency.ToUpper());
+            BittrexMarket market = GetTicker("USDT-" + CryptoCurrency.ToUpperInvariant());
             if (market.success)
+            {
                 return market.result.Last;
+            }
             else
+            {
                 throw new ExchangeServerSideException();
+            }
         }
 
         public float GetUSDAsk(string CryptoCurrency)
         {
-            BittrexMarket market = GetTicker("USDT-" + CryptoCurrency.ToUpper());
+            BittrexMarket market = GetTicker("USDT-" + CryptoCurrency.ToUpperInvariant());
             if (market.success)
+            {
                 return market.result.Ask;
+            }
             else
+            {
                 throw new ExchangeServerSideException();
+            }
         }
 
         public float GetUSDBid(string CryptoCurrency)
         {
-            BittrexMarket market = GetTicker("USDT-" + CryptoCurrency.ToUpper());
+            BittrexMarket market = GetTicker("USDT-" + CryptoCurrency.ToUpperInvariant());
             if (market.success)
+            {
                 return market.result.Bid;
+            }
             else
+            {
                 throw new ExchangeServerSideException();
+            }
         }
 
         public IDictionary<DateTime, float> GetUSDDailyHigh(string CryptoCurrency)
         {
-            HistoricBittrexMarket Historicmarket = GetHistory("USDT-" + CryptoCurrency.ToUpper(), "day");
+            HistoricBittrexMarket Historicmarket = GetHistory("USDT-" + CryptoCurrency.ToUpperInvariant(), "day");
             if (Historicmarket.success)
             {
                 IDictionary<DateTime, float> Dictionary = new Dictionary<DateTime, float>(); ;
@@ -64,7 +76,7 @@ namespace Core.Exchanges
 
         public IDictionary<DateTime, float> GetUSDDailyLow(string CryptoCurrency)
         {
-            HistoricBittrexMarket Historicmarket = GetHistory("USDT-" + CryptoCurrency.ToUpper(), "day");
+            HistoricBittrexMarket Historicmarket = GetHistory("USDT-" + CryptoCurrency.ToUpperInvariant(), "day");
             if (Historicmarket.success)
             {
                 IDictionary<DateTime, float> Dictionary = new Dictionary<DateTime, float>(); ;
@@ -80,7 +92,7 @@ namespace Core.Exchanges
 
         public IDictionary<DateTime, float> GetUSDMinuteHigh(string CryptoCurrency)
         {
-            HistoricBittrexMarket Historicmarket = GetHistory("USDT-" + CryptoCurrency.ToUpper(), "OneMin");
+            HistoricBittrexMarket Historicmarket = GetHistory("USDT-" + CryptoCurrency.ToUpperInvariant(), "OneMin");
             if (Historicmarket.success)
             {
                 IDictionary<DateTime, float> Dictionary = new Dictionary<DateTime, float>(); ;
@@ -96,7 +108,7 @@ namespace Core.Exchanges
 
         public IDictionary<DateTime, float> GetUSDMinuteLow(string CryptoCurrency)
         {
-            HistoricBittrexMarket Historicmarket = GetHistory("USDT-" + CryptoCurrency.ToUpper(), "OneMin");
+            HistoricBittrexMarket Historicmarket = GetHistory("USDT-" + CryptoCurrency.ToUpperInvariant(), "OneMin");
             if (Historicmarket.success)
             {
                 IDictionary<DateTime, float> Dictionary = new Dictionary<DateTime, float>(); ;

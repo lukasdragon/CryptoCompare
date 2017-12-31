@@ -65,8 +65,7 @@ namespace Core.Helpers
             request.ContentType = ContentType;
 
             if (!string.IsNullOrEmpty(PostData) && Method == HttpVerb.POST)
-            {
-                var encoding = new UTF8Encoding();
+            {              
                 var bytes = Encoding.GetEncoding("iso-8859-1").GetBytes(PostData);
                 request.ContentLength = bytes.Length;
 
@@ -83,17 +82,20 @@ namespace Core.Helpers
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
                     var message = String.Format("Request failed. Received HTTP {0}", response.StatusCode);
-                    throw new ApplicationException(message);
+                    throw new WebException(message);
+                        
                 }
 
                 // grab the response
                 using (var responseStream = response.GetResponseStream())
                 {
                     if (responseStream != null)
+                    {
                         using (var reader = new StreamReader(responseStream))
                         {
                             responseValue = reader.ReadToEnd();
                         }
+                    }
                 }
                 return responseValue;
             }

@@ -8,7 +8,7 @@ namespace Core.Exceptions
     // Summary:
     //     The exception that is thrown when an exchange returns invalid or
     //     none of the information requested.
-    class ExchangeServerSideException : Exception
+    public class ExchangeServerSideException : Exception
     {
 
         ///<summary>
