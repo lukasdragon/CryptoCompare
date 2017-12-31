@@ -17,22 +17,35 @@ namespace GUIOutput
         public ChartGUI()
         {
             InitializeComponent();
-            WriteFile();
+            MinuteLow();
+            MinuteHigh();
         }
         
-        public void WriteFile()
+        public void MinuteLow()
         {
             Bittrex bittrex = new Bittrex();
             var values = bittrex.GetUSDMinuteLow("BTC");
             foreach (var results in values)
             {
-                string path = (Directory.GetCurrentDirectory() + "\\BTCValues.txt");
-                if (!File.Exists(path))
+                string path = (Directory.GetCurrentDirectory() + "\\BTCValueLow.txt");
+                using (StreamWriter sw = File.AppendText(path))
                 {
-                    #pragma warning disable CS0642 //empty statement, i know
-                    using (StreamWriter sw = File.CreateText(path));
-                    #pragma warning restore CS0642
+                    sw.WriteLine(results);
                 }
+
+                string DT = results.Key.ToString();
+                float BTCValue = results.Value;
+                BTCChart.Series[0].Points.AddY(BTCValue);
+            }
+        }
+
+        private void MinuteHigh()
+        {
+            Bittrex bittrex = new Bittrex();
+            var values = bittrex.GetUSDMinuteHigh("BTC");
+            foreach (var results in values)
+            {
+                string path = (Directory.GetCurrentDirectory() + "\\BTCValueHigh.txt");
                 using (StreamWriter sw = File.AppendText(path))
                 {
                     sw.WriteLine(results);
@@ -43,9 +56,9 @@ namespace GUIOutput
                 float addedValue = BTCValue + 750;
                 BTCChart.ChartAreas[0].AxisX.Maximum = addedValue;
                 BTCChart.ChartAreas[0].AxisX.Minimum = 0;
-                BTCChart.ChartAreas[0].AxisX.Title = "Minutes after 0";
+                BTCChart.ChartAreas[0].AxisX.Title = "Minutes ago (0 = 10 days ago)";
                 BTCChart.ChartAreas[0].AxisX.Interval = (60 * 24);
-                BTCChart.Series[0].Points.AddY(BTCValue);
+                BTCChart.Series[1].Points.AddY(BTCValue);
 
                 timer1.Start();
             }
@@ -54,7 +67,8 @@ namespace GUIOutput
         private void Timer1_Tick(object sender, EventArgs e)
         {
             timer1.Start();
-            WriteFile();
+            MinuteLow();
+            MinuteHigh();
         }
     }
 }
