@@ -16,7 +16,7 @@ namespace GUIOutput
         public ChartGUI()
         {
             InitializeComponent();
-            RefreshBTCChart();
+            timer1.Start();
         }
 
         private void BTCChart_Click(object sender, EventArgs e)
@@ -24,25 +24,24 @@ namespace GUIOutput
 
         }
 
-        private void RefreshBTCChart()
-        {
-            Bittrex bittrex = new Bittrex();
-            float bxBTCAsk = bittrex.GetUSDAsk("BTC");
-            float bxBTCBid = bittrex.GetUSDBid("BTC");
-            float bxBTCLast = bittrex.GetUSDLast("BTC");
-            float bxBTCChartMax = (bxBTCAsk + 750);
-            BTCChart.ChartAreas[0].AxisX.Maximum = bxBTCChartMax;
-            BTCChart.ChartAreas[0].AxisX.Minimum = 0;
-            BTCChart.ChartAreas[0].AxisX.Interval = 1000;
-
-            timer1.Start();
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Random Rand_Value = new Random();
-            int ValueToAdd = Rand_Value.Next(1, 100);
-            BTCChart.Series[0].Points.AddY(ValueToAdd);
+            Bittrex bittrex = new Bittrex();
+            var values = bittrex.GetUSDMinuteLow("BTC");
+            foreach (var results in values)
+            {
+                string resultstr = results.ToString();
+                string[] btcValuesArray = resultstr.Split(',');
+                string resultDT = btcValuesArray.First();
+                string resultValue = btcValuesArray.Last();
+                float resultValueFloat = float.Parse(resultValue);
+                float AddedValue = resultValueFloat + 500;
+                BTCChart.ChartAreas[0].AxisX.Maximum = AddedValue;
+                BTCChart.ChartAreas[0].AxisX.Minimum = 0;
+                BTCChart.ChartAreas[0].AxisX.Interval = 1000;
+                BTCChart.Series[0].Points.AddY(resultValueFloat);
+                timer1.Start();
+            }
         }
     }
 }
