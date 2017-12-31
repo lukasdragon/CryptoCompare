@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,31 +17,24 @@ namespace GUIOutput
         public ChartGUI()
         {
             InitializeComponent();
-            timer1.Start();
+            WriteFile();
         }
-
-        private void BTCChart_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
+        
+        public void WriteFile()
         {
             Bittrex bittrex = new Bittrex();
             var values = bittrex.GetUSDMinuteLow("BTC");
             foreach (var results in values)
             {
-                string resultstr = results.ToString();
-                string[] btcValuesArray = resultstr.Split(',');
-                string resultDT = btcValuesArray.First();
-                string resultValue = btcValuesArray.Last();
-                float resultValueFloat = float.Parse(resultValue);
-                float AddedValue = resultValueFloat + 500;
-                BTCChart.ChartAreas[0].AxisX.Maximum = AddedValue;
-                BTCChart.ChartAreas[0].AxisX.Minimum = 0;
-                BTCChart.ChartAreas[0].AxisX.Interval = 1000;
-                BTCChart.Series[0].Points.AddY(resultValueFloat);
-                timer1.Start();
+                string path = (Directory.GetCurrentDirectory() + "\\BTCValues.txt");
+                if (!File.Exists(path))
+                {
+                    using (StreamWriter sw = File.CreateText(path));
+                }
+                using (StreamWriter sw = File.AppendText(path))
+                {
+                    sw.WriteLine(results);
+                }
             }
         }
     }
