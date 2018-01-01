@@ -19,7 +19,7 @@ namespace GUIOutput
             InitializeComponent();
             MinuteLow();
             MinuteHigh();
-        }
+        }//startup
         private void MinuteLow()
         {
             Bittrex bittrex = new Bittrex();
@@ -36,7 +36,7 @@ namespace GUIOutput
                 float BTCValue = results.Value;
                 BTCChart.Series[0].Points.AddY(BTCValue);
             }
-        }
+        }//minute-updated low value
 
         private void MinuteHigh()
         {
@@ -62,9 +62,9 @@ namespace GUIOutput
 
                 timer1.Start();
             }
-        }
+        }//minute-updated high value
 
-        private void Timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)//timer ends
         {
             timer1.Start();
             MinuteLow();
