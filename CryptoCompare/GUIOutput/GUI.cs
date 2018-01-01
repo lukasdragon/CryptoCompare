@@ -20,8 +20,7 @@ namespace GUIOutput
             MinuteLow();
             MinuteHigh();
         }
-        
-        public void MinuteLow()
+        private void MinuteLow()
         {
             Bittrex bittrex = new Bittrex();
             var values = bittrex.GetUSDMinuteLow("BTC");
@@ -58,6 +57,7 @@ namespace GUIOutput
                 BTCChart.ChartAreas[0].AxisX.Minimum = 0;
                 BTCChart.ChartAreas[0].AxisX.Title = "Minutes ago (0 = 10 days ago)";
                 BTCChart.ChartAreas[0].AxisX.Interval = (60 * 24);
+                BTCChart.ChartAreas[0].AxisY.Interval = 2000;
                 BTCChart.Series[1].Points.AddY(BTCValue);
 
                 timer1.Start();
