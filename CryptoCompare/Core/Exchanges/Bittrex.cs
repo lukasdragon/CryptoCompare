@@ -71,7 +71,9 @@ namespace Core.Exchanges
                 return Dictionary;
             }
             else
+            {
                 throw new ExchangeServerSideException();
+            }
         }
 
         public IDictionary<DateTime, float> GetUSDDailyLow(string CryptoCurrency)
