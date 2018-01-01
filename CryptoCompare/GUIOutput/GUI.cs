@@ -70,5 +70,39 @@ namespace GUIOutput
             MinuteLow();
             MinuteHigh();
         }
+
+        private void HourBtn_Click(object sender, EventArgs e)
+        {
+            BTCChart.ChartAreas[0].AxisX.Minimum = 14360;
+            BTCChart.ChartAreas[0].AxisX.Interval = 6;
+        }
+
+        private void DayBtn_Click(object sender, EventArgs e)
+        {
+            BTCChart.ChartAreas[0].AxisX.Minimum = 13680;
+            BTCChart.ChartAreas[0].AxisX.Interval = 72;
+        }
+
+        private void FullDayBtn_Click(object sender, EventArgs e)
+        {
+            BTCChart.ChartAreas[0].AxisX.Minimum = 12960;
+            BTCChart.ChartAreas[0].AxisX.Interval = 144;
+        }
+
+        private void WeekPlusBtn_Click(object sender, EventArgs e)
+        {
+            BTCChart.ChartAreas[0].AxisX.Minimum = 0;
+            BTCChart.ChartAreas[0].AxisX.Interval = 1440;
+        }
+
+        private void GraphUpperLeft_Click(object sender, EventArgs e)
+        {
+            if
+        }
+
+        private void GraphUpperRight_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
