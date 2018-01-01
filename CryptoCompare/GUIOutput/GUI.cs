@@ -20,8 +20,7 @@ namespace GUIOutput
             MinuteLow();
             MinuteHigh();
         }
-        
-        public void MinuteLow()
+        private void MinuteLow()
         {
             Bittrex bittrex = new Bittrex();
             var values = bittrex.GetUSDMinuteLow("BTC");
