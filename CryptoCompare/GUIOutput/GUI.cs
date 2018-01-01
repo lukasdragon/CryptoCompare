@@ -52,8 +52,7 @@ namespace GUIOutput
 
                 string DT = results.Key.ToString();
                 float BTCValue = results.Value;
-                float addedValue = BTCValue + 750;
-                BTCChart.ChartAreas[0].AxisX.Maximum = addedValue;
+                BTCChart.ChartAreas[0].AxisX.Maximum = 14400;
                 BTCChart.ChartAreas[0].AxisX.Minimum = 0;
                 BTCChart.ChartAreas[0].AxisX.Title = "Minutes ago (0 = 10 days ago)";
                 BTCChart.ChartAreas[0].AxisX.Interval = (60 * 24);
@@ -73,7 +72,8 @@ namespace GUIOutput
 
         private void HourBtn_Click(object sender, EventArgs e)
         {
-            BTCChart.ChartAreas[0].AxisX.Minimum = 14360;
+            BTCChart.ChartAreas[0].AxisX.Maximum = 14400;
+            BTCChart.ChartAreas[0].AxisX.Minimum = 14340;
             BTCChart.ChartAreas[0].AxisX.Interval = 6;
         }
 
@@ -97,12 +97,54 @@ namespace GUIOutput
 
         private void GraphUpperLeft_Click(object sender, EventArgs e)
         {
-            if
+            double Interval = (BTCChart.ChartAreas[0].AxisX.Interval);
+            double Maximum = (BTCChart.ChartAreas[0].AxisX.Maximum);
+            double Minimum = (BTCChart.ChartAreas[0].AxisX.Minimum);
+            if (Interval == 6)
+            {
+                BTCChart.ChartAreas[0].AxisX.Maximum = Maximum - 54;
+                BTCChart.ChartAreas[0].AxisX.Minimum = Minimum - 54;
+            }
+            else if (Interval == 72)
+            {
+                BTCChart.ChartAreas[0].AxisX.Maximum = Maximum - 648;
+                BTCChart.ChartAreas[0].AxisX.Minimum = Minimum - 648;
+            }
+            else if (Interval == 144)
+            {
+                BTCChart.ChartAreas[0].AxisX.Maximum = Maximum - 1296;
+                BTCChart.ChartAreas[0].AxisX.Minimum = Minimum - 1296;
+            }
+            if (Minimum <= -1)
+            {
+                BTCChart.ChartAreas[0].AxisX.Minimum = 0;
+            }
         }
 
         private void GraphUpperRight_Click(object sender, EventArgs e)
         {
-
+            double Interval = (BTCChart.ChartAreas[0].AxisX.Interval);
+            double Maximum = (BTCChart.ChartAreas[0].AxisX.Maximum);
+            double Minimum = (BTCChart.ChartAreas[0].AxisX.Minimum);
+            if (Interval == 6)
+            {
+                BTCChart.ChartAreas[0].AxisX.Maximum = Maximum + 54;
+                BTCChart.ChartAreas[0].AxisX.Minimum = Minimum + 54;
+            }
+            else if (Interval == 72)
+            {
+                BTCChart.ChartAreas[0].AxisX.Maximum = Maximum + 648;
+                BTCChart.ChartAreas[0].AxisX.Minimum = Minimum + 648;
+            }
+            else if (Interval == 144)
+            {
+                BTCChart.ChartAreas[0].AxisX.Maximum = Maximum + 1296;
+                BTCChart.ChartAreas[0].AxisX.Minimum = Minimum + 1296;
+            }
+            if (Maximum >= 14401)
+            {
+                BTCChart.ChartAreas[0].AxisX.Maximum = 14400;
+            }
         }
     }
 }
