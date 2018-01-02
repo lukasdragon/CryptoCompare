@@ -118,6 +118,22 @@ namespace GUIOutput
             if (Minimum <= -1)
             {
                 BTCChart.ChartAreas[0].AxisX.Minimum = 0;
+                if (Interval == 6)
+                {
+                    BTCChart.ChartAreas[0].AxisX.Maximum = 60;
+                }
+                else if (Interval == 72)
+                {
+                    BTCChart.ChartAreas[0].AxisX.Maximum = 720;
+                }
+                else if (Interval == 144)
+                {
+                    BTCChart.ChartAreas[0].AxisX.Maximum = 1440;
+                }
+                else if (Interval == 1440)
+                {
+                    BTCChart.ChartAreas[0].AxisX.Maximum = 14400;
+                }
             }
         }
 
@@ -144,6 +160,22 @@ namespace GUIOutput
             if (Maximum >= 14401)
             {
                 BTCChart.ChartAreas[0].AxisX.Maximum = 14400;
+                if (Interval == 6)
+                {
+                    BTCChart.ChartAreas[0].AxisX.Minimum = 14340;
+                }
+                else if (Interval == 72)
+                {
+                    BTCChart.ChartAreas[0].AxisX.Minimum = 13680;
+                }
+                else if (Interval == 144)
+                {
+                    BTCChart.ChartAreas[0].AxisX.Minimum = 12960;
+                }
+                else if (Interval == 1440)
+                {
+                    BTCChart.ChartAreas[0].AxisX.Minimum = 0;
+                }
             }
         }
     }
