@@ -115,7 +115,7 @@ namespace GUIOutput
                 BTCChart.ChartAreas[0].AxisX.Maximum = Maximum - 1296;
                 BTCChart.ChartAreas[0].AxisX.Minimum = Minimum - 1296;
             }
-            if (Minimum <= -1)
+            if (Minimum <= 1296)
             {
                 BTCChart.ChartAreas[0].AxisX.Minimum = 0;
                 if (Interval == 6)
@@ -157,7 +157,7 @@ namespace GUIOutput
                 BTCChart.ChartAreas[0].AxisX.Maximum = Maximum + 1296;
                 BTCChart.ChartAreas[0].AxisX.Minimum = Minimum + 1296;
             }
-            if (Maximum >= 14401)
+            if (Maximum >= 14112)
             {
                 BTCChart.ChartAreas[0].AxisX.Maximum = 14400;
                 if (Interval == 6)
