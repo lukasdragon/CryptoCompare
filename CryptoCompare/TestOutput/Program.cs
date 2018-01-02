@@ -8,8 +8,10 @@ namespace TestOutput
     {
         static void Main(string[] args)
         {
+            Bittrex bittrex = new Bittrex();
+            Console.WriteLine(bittrex.GetUSDLast("BTC"));
             Gdax gdax = new Gdax();
-            gdax.GetTicker("BTC-USD");
+            Console.WriteLine(gdax.GetUSDLast("BTC"));
             Console.ReadLine();
         }
     }

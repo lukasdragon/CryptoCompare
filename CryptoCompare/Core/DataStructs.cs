@@ -5,12 +5,12 @@ namespace Core
 {
     public class DataStructs
     {
-        public struct MarketValues
+        public struct BittrexMarketValues
         {
             public float Bid;
             public float Ask;
             public float Last;
-            public MarketValues(float bid, float ask, float last)
+            public BittrexMarketValues(float bid, float ask, float last)
             {
                 Bid = bid;
                 Ask = ask;
@@ -18,12 +18,34 @@ namespace Core
             }
         }
 
+        public struct GdaxMarketValues
+        {
+            public int Trade_id;
+            public float Price;
+            public float Size;
+            public float Bid;
+            public float Ask;
+            public float Volume;
+            public DateTime Time;
+            public GdaxMarketValues(int trade_id, float price, float size, float bid, float ask, float volume, string time)
+            {
+                Trade_id = trade_id;
+                Price = price;
+                Size = size;
+                Bid = bid;
+                Ask = ask;
+                Volume = volume;
+                Time = DateTime.Parse(time);
+            }
+            
+        }
+
         public struct BittrexMarket
         {
             public bool success;
             public string message;
-            public MarketValues result;
-            public BittrexMarket(bool Success, string Message, MarketValues Result)
+            public BittrexMarketValues result;
+            public BittrexMarket(bool Success, string Message, BittrexMarketValues Result)
             {
                 success = Success;
                 message = Message;
