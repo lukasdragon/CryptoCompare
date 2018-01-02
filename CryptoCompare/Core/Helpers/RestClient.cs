@@ -42,11 +42,19 @@ namespace Core.Helpers
             PostData = "";
         }
 
-        public RestClient(string endpoint, HttpVerb method, string postData)
+        public RestClient(string endpoint, HttpVerb method, string contenttype)
         {
             EndPoint = endpoint;
             Method = method;
-            ContentType = "text/xml";
+            ContentType = contenttype;
+            PostData = "";
+        }
+
+        public RestClient(string endpoint, HttpVerb method, string contenttype, string postData)
+        {
+            EndPoint = endpoint;
+            Method = method;
+            ContentType = contenttype;
             PostData = postData;
         }
 
@@ -58,15 +66,18 @@ namespace Core.Helpers
 
         public string MakeRequest(string parameters)
         {
+
+
             var request = (HttpWebRequest)WebRequest.Create(EndPoint + parameters);
 
+            request.UserAgent = "CryptoCompare";
             request.Method = Method.ToString();
             request.ContentLength = 0;
             request.ContentType = ContentType;
 
             if (!string.IsNullOrEmpty(PostData) && Method == HttpVerb.POST)
             {              
-                var bytes = Encoding.GetEncoding("iso-8859-1").GetBytes(PostData);
+                var bytes = new UTF8Encoding().GetBytes(PostData);
                 request.ContentLength = bytes.Length;
 
                 using (var writeStream = request.GetRequestStream())

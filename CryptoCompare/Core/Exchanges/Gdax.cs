@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 using static Core.DataStructs;
 
@@ -19,17 +20,20 @@ namespace Core.Exchanges
 
         public float GetUSDAsk(string CryptoCurrency)
         {
-            throw new NotImplementedException();
+            GdaxMarketValues market = GetTicker("USD-" + CryptoCurrency.ToUpperInvariant());
+            return market.Ask;          
         }
 
         public float GetUSDBid(string CryptoCurrency)
         {
-            throw new NotImplementedException();
+            GdaxMarketValues market = GetTicker("USD-" + CryptoCurrency.ToUpperInvariant());
+            return market.Bid;
         }
 
         public float GetUSDLast(string CryptoCurrency)
         {
-            throw new NotImplementedException();
+            GdaxMarketValues market = GetTicker("USD-" + CryptoCurrency.ToUpperInvariant());
+            return market.Price;
         }
 
         public IDictionary<DateTime, float> GetUSDDailyHigh(string CryptoCurrency)
@@ -52,16 +56,16 @@ namespace Core.Exchanges
             throw new NotImplementedException();
         }
 
-        public string GetTicker(string market)
-        {
+        private GdaxMarketValues GetTicker(string market)
+        {         
             var client = new Helpers.RestClient
             {
                 EndPoint = GdaxTickerApiEndPoint,
                 Method = HttpVerb.GET,
                 ContentType = "application/json"
             };
-            return client.MakeRequest();
-           
+            var json = client.MakeRequest();
+            return JsonConvert.DeserializeObject<GdaxMarketValues>(json);
         }    
     }
 }
