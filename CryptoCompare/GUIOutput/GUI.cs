@@ -20,6 +20,7 @@ namespace GUIOutput
             MinuteLow();
             MinuteHigh();
         }//startup
+
         private void MinuteLow()
         {
             Bittrex bittrex = new Bittrex();
