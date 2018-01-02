@@ -75,24 +75,44 @@ namespace GUIOutput
             BTCChart.ChartAreas[0].AxisX.Maximum = 14400;
             BTCChart.ChartAreas[0].AxisX.Minimum = 14340;
             BTCChart.ChartAreas[0].AxisX.Interval = 6;
+            HourBtn.BackColor = Color.DarkSlateGray;
+            HourBtn.ForeColor = Color.White;
+            DayBtn.BackColor = Color.White;
+            DayBtn.ForeColor = Color.Black;
+            FullDayBtn.BackColor = Color.White;
+            FullDayBtn.ForeColor = Color.Black;
+            WeekPlusBtn.BackColor = Color.White;
+            WeekPlusBtn.ForeColor = Color.Black;
         }
 
         private void DayBtn_Click(object sender, EventArgs e)
         {
             BTCChart.ChartAreas[0].AxisX.Minimum = 13680;
             BTCChart.ChartAreas[0].AxisX.Interval = 72;
+            HourBtn.BackColor = Color.White;
+            DayBtn.BackColor = Color.DarkSlateGray;
+            FullDayBtn.BackColor = Color.White;
+            WeekPlusBtn.BackColor = Color.White;
         }
 
         private void FullDayBtn_Click(object sender, EventArgs e)
         {
             BTCChart.ChartAreas[0].AxisX.Minimum = 12960;
             BTCChart.ChartAreas[0].AxisX.Interval = 144;
+            HourBtn.BackColor = Color.White;
+            FullDayBtn.BackColor = Color.DarkSlateGray;
+            DayBtn.BackColor = Color.White;
+            WeekPlusBtn.BackColor = Color.White;
         }
 
         private void WeekPlusBtn_Click(object sender, EventArgs e)
         {
             BTCChart.ChartAreas[0].AxisX.Minimum = 0;
             BTCChart.ChartAreas[0].AxisX.Interval = 1440;
+            HourBtn.BackColor = Color.White;
+            WeekPlusBtn.BackColor = Color.DarkSlateGray;
+            FullDayBtn.BackColor = Color.White;
+            DayBtn.BackColor = Color.White;
         }
 
         private void GraphUpperLeft_Click(object sender, EventArgs e)
